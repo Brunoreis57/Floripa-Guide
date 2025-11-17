@@ -77,8 +77,8 @@ const Eventos = () => {
         {/* Events Grid */}
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {events.map((event) => (
+            <a key={event.id} href={`/eventos/${event.id}`}>
             <Card
-              key={event.id}
               className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer group"
             >
               {/* Image */}
@@ -138,6 +138,7 @@ const Eventos = () => {
                 </Button>
               </div>
             </Card>
+            </a>
           ))}
         </div>
 

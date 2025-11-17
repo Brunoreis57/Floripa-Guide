@@ -37,7 +37,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
             <div className="w-10 h-10 bg-gradient-primary rounded-full flex items-center justify-center transition-transform group-hover:scale-110">
-              <MapPin className="w-5 h-5 text-primary-foreground" />
+              <img src="/floripa-guide.svg" alt="Floripa Guide" className="w-5 h-5" />
             </div>
             <div className="flex flex-col">
               <span className="font-bold text-lg leading-none text-foreground">{t('header.logo')}</span>

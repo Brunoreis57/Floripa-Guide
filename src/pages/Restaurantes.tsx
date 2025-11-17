@@ -335,8 +335,8 @@ const Restaurantes = () => {
         {/* Restaurants Grid */}
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {filteredRestaurants.map((restaurant) => (
+            <a key={restaurant.id} href={`/restaurantes/${restaurant.id}`}>
             <Card
-              key={restaurant.id}
               className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer group"
             >
               {/* Image */}
@@ -409,6 +409,7 @@ const Restaurantes = () => {
                 </div>
               </div>
             </Card>
+            </a>
           ))}
         </div>
 

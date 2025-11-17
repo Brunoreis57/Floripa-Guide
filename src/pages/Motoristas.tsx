@@ -72,7 +72,8 @@ const Motoristas = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {filtered.map((d) => (
-            <Card key={d.id} className="overflow-hidden hover:shadow-lg transition-all">
+            <a key={d.id} href={`/motoristas/${d.id}`}>
+            <Card className="overflow-hidden hover:shadow-lg transition-all">
               <div className="relative h-32 md:h-40 overflow-hidden">
                 <img
                   src={d.photoUrl || eventsImage}
@@ -105,6 +106,7 @@ const Motoristas = () => {
                 </Button>
               </div>
             </Card>
+            </a>
           ))}
         </div>
       </div>

@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <div className="w-10 h-10 bg-gradient-primary rounded-full flex items-center justify-center">
-                <MapPin className="w-5 h-5 text-primary-foreground" />
+                <img src="/floripa-guide.svg" alt="Floripa Guide" className="w-5 h-5" />
               </div>
               <div>
                 <span className="font-bold text-lg text-foreground">Floripa Guide Pro</span>

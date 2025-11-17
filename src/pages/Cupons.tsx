@@ -9,7 +9,7 @@ import restaurantImage from "@/assets/restaurant-card.jpg";
 import eventsImage from "@/assets/events-card.jpg";
 import beachImage from "@/assets/beach-card.jpg";
 
-type CouponItem = {
+export type CouponItem = {
   id: number;
   title: string;
   business: string;
@@ -22,7 +22,7 @@ type CouponItem = {
   featured?: boolean;
 };
 
-const couponsData: CouponItem[] = [
+export const couponsData: CouponItem[] = [
   {
     id: 1,
     title: "10% Off no Cardápio",
@@ -172,8 +172,8 @@ const Cupons = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {filtered.map((c) => (
+            <a key={c.id} href={`/cupons/${c.id}`}>
             <Card
-              key={c.id}
               className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer group"
             >
               <div className="relative h-36 md:h-48 overflow-hidden">
@@ -214,6 +214,7 @@ const Cupons = () => {
                 </p>
               </div>
             </Card>
+            </a>
           ))}
         </div>
       </div>
