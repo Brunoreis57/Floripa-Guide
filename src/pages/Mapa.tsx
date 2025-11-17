@@ -181,23 +181,20 @@ const MapPage = () => {
         <Card className="overflow-hidden">
           <div className="h-[70vh]">
             {(() => {
-              const AnyMapContainer: any = MapContainer;
-              const AnyTileLayer: any = TileLayer;
-              const AnyMarker: any = Marker;
               return (
-                <AnyMapContainer center={[-27.5945, -48.5477]} zoom={12} className="h-full w-full">
+                <MapContainer center={[-27.5945, -48.5477] as L.LatLngExpression} zoom={12} className="h-full w-full">
                   {import.meta.env.VITE_MAPBOX_TOKEN ? (
-                    <AnyTileLayer
+                    <TileLayer
                       url={`https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=${import.meta.env.VITE_MAPBOX_TOKEN}`}
                       attribution="&copy; Mapbox &copy; OpenStreetMap contributors"
                       tileSize={512}
                       zoomOffset={-1}
                     />
                   ) : (
-                    <AnyTileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="&copy; OpenStreetMap contributors" />
+                    <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="&copy; OpenStreetMap contributors" />
                   )}
                   {filtered.map((p) => (
-                    <AnyMarker key={p.id} position={p.coords} icon={getIcon(p.category)}>
+                    <Marker key={p.id} position={p.coords as L.LatLngExpression} icon={getIcon(p.category) as L.DivIcon}>
                       <Popup>
                         <div className="w-64">
                       <div className="flex items-center gap-2 mb-1">
@@ -231,9 +228,9 @@ const MapPage = () => {
                       </div>
                     </div>
                   </Popup>
-                    </AnyMarker>
+                    </Marker>
                   ))}
-                </AnyMapContainer>
+                </MapContainer>
               );
             })()}
           </div>

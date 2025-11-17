@@ -16,7 +16,7 @@ import {
   Users,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import heroImage from "@/assets/hero-floripa.jpg";
+import heroImage from "@/assets/hero-floripa1.jpg";
 import beachCard from "@/assets/beach-card.jpg";
 import restaurantCard from "@/assets/restaurant-card.jpg";
 import eventsCard from "@/assets/events-card.jpg";
@@ -96,12 +96,8 @@ const Home = () => {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative h-[600px] flex items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroImage})` }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-background" />
-        </div>
+        <img src={heroImage} alt="Floripa hero" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-background" />
 
         <div className="relative z-10 container mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in drop-shadow-lg">
