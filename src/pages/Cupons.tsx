@@ -170,13 +170,13 @@ const Cupons = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {filtered.map((c) => (
             <Card
               key={c.id}
               className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer group"
             >
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-36 md:h-48 overflow-hidden">
                 <img
                   src={c.image}
                   alt={c.title}
@@ -189,12 +189,12 @@ const Cupons = () => {
                   </Badge>
                 </div>
               </div>
-              <div className="p-4">
-                <h3 className="font-semibold text-lg text-foreground mb-1">{c.title}</h3>
-                <p className="text-sm text-muted-foreground mb-3">{c.business}</p>
-                <p className="text-sm text-muted-foreground mb-2">{c.description}</p>
+              <div className="p-4 md:p-6">
+                <h3 className="font-semibold text-base md:text-lg text-foreground mb-1">{c.title}</h3>
+                <p className="text-xs md:text-sm text-muted-foreground mb-3">{c.business}</p>
+                <p className="text-xs md:text-sm text-muted-foreground mb-2">{c.description}</p>
                 <div className="flex items-center justify-between mt-3">
-                  <span className="text-sm text-muted-foreground">{t("coupons.code")}: {c.code}</span>
+                  <span className="text-xs md:text-sm text-muted-foreground">{t("coupons.code")}: {c.code}</span>
                   <div className="flex items-center gap-2">
                     <Button
                       size="sm"

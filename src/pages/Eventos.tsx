@@ -75,14 +75,14 @@ const Eventos = () => {
         </div>
 
         {/* Events Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {events.map((event) => (
             <Card
               key={event.id}
               className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer group"
             >
               {/* Image */}
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-36 md:h-48 overflow-hidden">
                 <img
                   src={event.image}
                   alt={event.name}
@@ -102,37 +102,37 @@ const Eventos = () => {
               </div>
 
               {/* Content */}
-              <div className="p-4">
-                <h3 className="font-semibold text-lg text-foreground mb-2 group-hover:text-primary transition-colors">
+              <div className="p-4 md:p-6">
+                <h3 className="font-semibold text-base md:text-lg text-foreground mb-2 group-hover:text-primary transition-colors">
                   {event.name}
                 </h3>
 
-                <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+                <p className="text-xs md:text-sm text-muted-foreground mb-3 line-clamp-2">
                   {event.description}
                 </p>
 
                 {/* Info */}
                 <div className="space-y-2 mb-4">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2 text-xs md:text-sm text-muted-foreground">
                     <Calendar className="w-4 h-4" />
                     <span>{formatDate(event.date)}</span>
                     <span>•</span>
                     <Clock className="w-4 h-4" />
                     <span>{event.time}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2 text-xs md:text-sm text-muted-foreground">
                     <MapPin className="w-4 h-4" />
                     <span>{event.location}</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-semibold text-foreground">
+                    <span className="text-xs md:text-sm font-semibold text-foreground">
                       {event.price}
                     </span>
                   </div>
                 </div>
 
                 {/* Actions */}
-                <Button variant="default" className="w-full">
+                <Button variant="default" size="sm" className="w-full">
                   <Ticket className="w-4 h-4 mr-2" />
                   {t('events.viewDetails')}
                 </Button>

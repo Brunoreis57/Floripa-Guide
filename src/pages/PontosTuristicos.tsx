@@ -110,14 +110,14 @@ const PontosTuristicos = () => {
         </div>
 
         {/* Spots Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {filteredSpots.map((spot) => (
             <Card
               key={spot.id}
               className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer group"
             >
               {/* Image */}
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-36 md:h-48 overflow-hidden">
                 <img
                   src={spot.image}
                   alt={spot.name}
@@ -137,17 +137,17 @@ const PontosTuristicos = () => {
               </div>
 
               {/* Content */}
-              <div className="p-4">
-                <h3 className="font-semibold text-lg text-foreground mb-2 group-hover:text-primary transition-colors">
+              <div className="p-4 md:p-6">
+                <h3 className="font-semibold text-base md:text-lg text-foreground mb-2 group-hover:text-primary transition-colors">
                   {spot.name}
                 </h3>
 
-                <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+                <p className="text-xs md:text-sm text-muted-foreground mb-3 line-clamp-2">
                   {spot.description}
                 </p>
 
                 {/* Info */}
-                <div className="flex items-center gap-4 mb-3 text-sm">
+                <div className="flex items-center gap-4 mb-3 text-xs md:text-sm">
                   <div className="flex items-center gap-1 text-muted-foreground">
                     <Clock className="w-4 h-4" />
                     <span>{
@@ -159,7 +159,7 @@ const PontosTuristicos = () => {
                   </div>
                   <div className="flex items-center gap-1">
                     <Star className="w-4 h-4 fill-accent text-accent" />
-                    <span className="font-semibold text-foreground">
+                    <span className="font-semibold text-foreground text-xs md:text-sm">
                       {spot.rating}
                     </span>
                     <span className="text-muted-foreground">

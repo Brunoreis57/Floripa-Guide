@@ -70,10 +70,10 @@ const Motoristas = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {filtered.map((d) => (
             <Card key={d.id} className="overflow-hidden hover:shadow-lg transition-all">
-              <div className="relative h-40 overflow-hidden">
+              <div className="relative h-32 md:h-40 overflow-hidden">
                 <img
                   src={d.photoUrl || eventsImage}
                   alt={d.name}
@@ -82,23 +82,23 @@ const Motoristas = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="p-6 flex items-start justify-between">
+              <div className="p-4 md:p-6 flex items-start justify-between">
                 <div>
                   <div className="flex items-center gap-2">
                     <Car className="w-5 h-5" />
-                    <h3 className="text-lg font-semibold text-foreground">{d.name}</h3>
+                    <h3 className="text-base md:text-lg font-semibold text-foreground">{d.name}</h3>
                   </div>
-                  <p className="text-sm text-muted-foreground">{d.type} • {d.avgPrice}</p>
+                  <p className="text-xs md:text-sm text-muted-foreground">{d.type} • {d.avgPrice}</p>
                 </div>
                 <Badge className="bg-accent text-accent-foreground">
                   <Star className="w-3 h-3 mr-1" />
                   {d.rating}
                 </Badge>
               </div>
-              <div className="px-6 text-sm text-muted-foreground">
+              <div className="px-4 md:px-6 text-xs md:text-sm text-muted-foreground">
                 {t("drivers.areas", { defaultValue: "Lugares atendidos" })}: {d.areas.join(", ")}
               </div>
-              <div className="p-6 pt-4">
+              <div className="p-4 md:p-6 pt-4">
                 <Button onClick={() => contact(d)}>
                   <Phone className="w-4 h-4 mr-2" />
                   {t("drivers.contact", { defaultValue: "Fale com o motorista" })}

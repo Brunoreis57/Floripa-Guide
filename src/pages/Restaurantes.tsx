@@ -333,14 +333,14 @@ const Restaurantes = () => {
         </div>
 
         {/* Restaurants Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {filteredRestaurants.map((restaurant) => (
             <Card
               key={restaurant.id}
               className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer group"
             >
               {/* Image */}
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-36 md:h-48 overflow-hidden">
                 <img
                   src={restaurant.image}
                   alt={restaurant.name}
@@ -360,9 +360,9 @@ const Restaurantes = () => {
               </div>
 
               {/* Content */}
-              <div className="p-4">
+              <div className="p-4 md:p-6">
                 <div className="flex items-start justify-between mb-2">
-                  <h3 className="font-semibold text-lg text-foreground group-hover:text-primary transition-colors">
+                  <h3 className="font-semibold text-base md:text-lg text-foreground group-hover:text-primary transition-colors">
                     {restaurant.name}
                   </h3>
                   <div className="flex items-center gap-1">
@@ -373,17 +373,17 @@ const Restaurantes = () => {
                   </div>
                 </div>
 
-                <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+                <p className="text-xs md:text-sm text-muted-foreground mb-3 line-clamp-2">
                   {restaurant.description}
                 </p>
 
                 {/* Info */}
                 <div className="space-y-2 mb-4">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2 text-xs md:text-sm text-muted-foreground">
                     <MapPin className="w-4 h-4" />
                     <span>{restaurant.address}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm">
+                  <div className="flex items-center gap-2 text-xs md:text-sm">
                     <DollarSign className="w-4 h-4 text-muted-foreground" />
                     <span className={getPriceColor(restaurant.priceRange)}>
                       {restaurant.priceRange}
