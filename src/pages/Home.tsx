@@ -185,10 +185,10 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 auto-rows-fr">
             {topSpots.map((spot, index) => (
               <a key={index} href={index === 0 ? "/pontos-turisticos/1" : index === 1 ? "/restaurantes/1" : "/eventos/1"}>
-              <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group cursor-pointer">
+              <Card className="h-full flex flex-col overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group cursor-pointer">
                 <div className="relative h-36 md:h-48 overflow-hidden">
                   <img
                     src={spot.image}
@@ -199,14 +199,14 @@ const Home = () => {
                     <span className="text-accent">#{index + 1}</span>
                   </div>
                 </div>
-                <div className="p-4 md:p-6">
+                <div className="p-4 md:p-6 flex-1 flex flex-col">
                   <h3 className="font-semibold text-base md:text-lg text-foreground mb-1">
                     {spot.name}
                   </h3>
                   <p className="text-xs md:text-sm text-muted-foreground mb-3">
                     {spot.category}
                   </p>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 mt-auto">
                     <div className="flex items-center gap-1">
                       <Star className="w-4 h-4 fill-accent text-accent" />
                       <span className="font-semibold text-foreground">
