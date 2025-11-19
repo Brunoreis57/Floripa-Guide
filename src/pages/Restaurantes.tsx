@@ -336,7 +336,7 @@ const Restaurantes = () => {
         {/* Restaurants Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 auto-rows-fr">
           {filteredRestaurants.map((restaurant) => (
-            <a key={restaurant.id} href={`/restaurantes/${restaurant.id}`}>
+            <Link key={restaurant.id} to={`/restaurantes/${restaurant.id}`}>
             <Card
               className="h-full overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer group"
             >
@@ -405,7 +405,7 @@ const Restaurantes = () => {
                 </div>
               </div>
             </Card>
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -432,3 +432,4 @@ const Restaurantes = () => {
 };
 
 export default Restaurantes;
+import { Link } from "react-router-dom";

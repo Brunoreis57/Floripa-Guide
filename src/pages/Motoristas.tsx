@@ -72,7 +72,7 @@ const Motoristas = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 auto-rows-fr">
           {filtered.map((d) => (
-            <a key={d.id} href={`/motoristas/${d.id}`}>
+            <Link key={d.id} to={`/motoristas/${d.id}`}>
             <Card className="h-full overflow-hidden hover:shadow-lg transition-all">
               <div className="relative h-32 md:h-40 overflow-hidden">
                 <img
@@ -106,7 +106,7 @@ const Motoristas = () => {
                 </Button>
               </div>
             </Card>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
@@ -115,3 +115,4 @@ const Motoristas = () => {
 };
 
 export default Motoristas;
+import { Link } from "react-router-dom";

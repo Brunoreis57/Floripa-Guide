@@ -77,7 +77,7 @@ const Eventos = () => {
         {/* Events Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 auto-rows-fr">
           {events.map((event) => (
-            <a key={event.id} href={`/eventos/${event.id}`}>
+            <Link key={event.id} to={`/eventos/${event.id}`}>
             <Card
               className="h-full overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer group"
             >
@@ -138,7 +138,7 @@ const Eventos = () => {
                 </Button>
               </div>
             </Card>
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -167,3 +167,4 @@ const Eventos = () => {
 };
 
 export default Eventos;
+import { Link } from "react-router-dom";

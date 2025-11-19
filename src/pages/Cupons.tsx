@@ -171,7 +171,7 @@ const Cupons = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 auto-rows-fr">
           {filtered.map((c) => (
-            <a key={c.id} href={`/cupons/${c.id}`}>
+            <Link key={c.id} to={`/cupons/${c.id}`}>
             <Card
               className="h-full overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer group"
             >
@@ -203,7 +203,7 @@ const Cupons = () => {
                 </p>
               </div>
             </Card>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
@@ -212,3 +212,4 @@ const Cupons = () => {
 };
 
 export default Cupons;
+import { Link } from "react-router-dom";

@@ -187,7 +187,7 @@ const Home = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 auto-rows-fr">
             {topSpots.map((spot, index) => (
-              <a key={index} href={index === 0 ? "/pontos-turisticos/1" : index === 1 ? "/restaurantes/1" : "/eventos/1"}>
+              <Link key={index} to={index === 0 ? "/pontos-turisticos/1" : index === 1 ? "/restaurantes/1" : "/eventos/1"}>
               <Card className="h-full flex flex-col overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group cursor-pointer">
                 <div className="relative h-36 md:h-48 overflow-hidden">
                   <img
@@ -219,7 +219,7 @@ const Home = () => {
                   </div>
                 </div>
               </Card>
-              </a>
+              </Link>
             ))}
           </div>
 
