@@ -4,6 +4,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useTheme } from "next-themes";
+import { Button } from "@/components/ui/button";
+import { Sun, Moon } from "lucide-react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "@/pages/Home";
@@ -15,6 +18,7 @@ import MapPage from "@/pages/Mapa";
 import RoteiroIA from "@/pages/RoteiroIA";
 import Cupons from "@/pages/Cupons";
 import Motoristas from "@/pages/Motoristas";
+import Buscar from "@/pages/Buscar";
 import SpotDetalhe from "@/pages/SpotDetalhe";
 import RestauranteDetalhe from "@/pages/RestauranteDetalhe";
 import EventoDetalhe from "@/pages/EventoDetalhe";
@@ -45,6 +49,24 @@ const RequirePartner = ({ children }: { children: JSX.Element }) => {
   return children;
 };
 
+const ThemeFab = () => {
+  const { resolvedTheme, setTheme } = useTheme();
+  return (
+    <Button
+      variant="outline"
+      className="fixed bottom-4 right-4 z-50 rounded-full h-12 w-12 p-0 shadow-lg bg-background"
+      aria-label={resolvedTheme === "dark" ? "Mudar para tema claro" : "Mudar para tema escuro"}
+      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+    >
+      {resolvedTheme === "dark" ? (
+        <Sun className="w-5 h-5" />
+      ) : (
+        <Moon className="w-5 h-5" />
+      )}
+    </Button>
+  );
+};
+
 const App = () => (
   <ThemeProvider attribute="class" defaultTheme="system" enableSystem storageKey="theme">
     <QueryClientProvider client={queryClient}>
@@ -72,6 +94,7 @@ const App = () => (
                 <Route path="/motoristas" element={<Motoristas />} />
                 <Route path="/motoristas/:id" element={<MotoristaDetalhe />} />
                 <Route path="/roteiro" element={<RoteiroIA />} />
+                <Route path="/buscar" element={<Buscar />} />
                 <Route path="/painel" element={<RequirePartner><Painel /></RequirePartner>} />
                 <Route path="/painel-parceiro" element={<RequirePartner><Painel /></RequirePartner>} />
                 <Route path="/parceiros" element={<Parceiros />} />
@@ -81,6 +104,7 @@ const App = () => (
               </Routes>
             </main>
             <Footer />
+            <ThemeFab />
           </div>
         </BrowserRouter>
       </TooltipProvider>

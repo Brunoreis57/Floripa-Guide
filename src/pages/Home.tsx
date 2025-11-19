@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
@@ -23,6 +24,8 @@ import eventsCard from "@/assets/events-card.jpg";
 
 const Home = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const [query, setQuery] = useState<string>("");
   const categories = [
     {
       icon: MapPin,
@@ -113,8 +116,19 @@ const Home = () => {
               type="text"
               placeholder={t('home.searchPlaceholder')}
               className="flex-1 border-0 focus-visible:ring-0 text-lg"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  navigate(`/buscar?q=${encodeURIComponent(query.trim())}`);
+                }
+              }}
             />
-            <Button size="lg" className="rounded-full px-8 bg-gradient-primary">
+            <Button
+              size="lg"
+              className="rounded-full px-8 bg-gradient-primary"
+              onClick={() => navigate(`/buscar?q=${encodeURIComponent(query.trim())}`)}
+            >
               <Search className="w-5 h-5 mr-2" />
               {t('home.searchButton')}
             </Button>
