@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Filter, Tag } from "lucide-react";
+import { Filter, Tag, Copy } from "lucide-react";
 import restaurantImage from "@/assets/restaurant-card.jpg";
 import eventsImage from "@/assets/events-card.jpg";
 import beachImage from "@/assets/beach-card.jpg";
@@ -192,11 +192,20 @@ const Cupons = () => {
                 <h3 className="font-semibold text-base md:text-lg text-foreground mb-1">{c.title}</h3>
                 <p className="text-xs md:text-sm text-muted-foreground mb-3">{c.business}</p>
                 <p className="text-xs md:text-sm text-muted-foreground mb-2">{c.description}</p>
-                <div className="flex items-center justify-between mt-3">
+                <div className="flex items-center gap-2 mt-3">
                   <span className="text-xs md:text-sm text-muted-foreground">{t("coupons.code")}: {c.code}</span>
-                  <div className="flex items-center gap-2">
-                    <Button size="sm" variant="default" className="h-9 px-3 text-xs md:h-11 md:px-8 md:text-sm">{t("coupons.viewDetails", { defaultValue: "Ver Detalhes" })}</Button>
-                  </div>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="h-8 px-2 text-xs"
+                    onClick={() => navigator.clipboard.writeText(c.code)}
+                  >
+                    <Copy className="w-3 h-3 mr-1" />
+                    {t("coupons.copy", { defaultValue: "Copiar" })}
+                  </Button>
+                </div>
+                <div className="mt-2">
+                  <Button size="sm" variant="default" className="w-full h-9 px-3 text-xs md:h-11 md:px-8 md:text-sm">{t("coupons.viewDetails", { defaultValue: "Ver Detalhes" })}</Button>
                 </div>
                 <p className="text-xs text-muted-foreground mt-2">
                   {t("coupons.validUntil", { date: c.validUntil })}
