@@ -75,11 +75,11 @@ const Eventos = () => {
         </div>
 
         {/* Events Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 auto-rows-fr">
           {events.map((event) => (
             <a key={event.id} href={`/eventos/${event.id}`}>
             <Card
-              className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer group"
+              className="h-full overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer group"
             >
               {/* Image */}
               <div className="relative h-36 md:h-48 overflow-hidden">
@@ -134,7 +134,7 @@ const Eventos = () => {
                 {/* Actions */}
                 <Button variant="default" size="sm" className="w-full">
                   <Ticket className="w-4 h-4 mr-2" />
-                  {t('events.viewDetails')}
+                  {t('events.viewDetails', { defaultValue: 'Ver Detalhes' })}
                 </Button>
               </div>
             </Card>

@@ -3,8 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Filter, Tag, Copy } from "lucide-react";
-import { toast } from "@/hooks/use-toast";
+import { Filter, Tag } from "lucide-react";
 import restaurantImage from "@/assets/restaurant-card.jpg";
 import eventsImage from "@/assets/events-card.jpg";
 import beachImage from "@/assets/beach-card.jpg";
@@ -170,11 +169,11 @@ const Cupons = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 auto-rows-fr">
           {filtered.map((c) => (
             <a key={c.id} href={`/cupons/${c.id}`}>
             <Card
-              className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer group"
+              className="h-full overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer group"
             >
               <div className="relative h-36 md:h-48 overflow-hidden">
                 <img
@@ -196,17 +195,7 @@ const Cupons = () => {
                 <div className="flex items-center justify-between mt-3">
                   <span className="text-xs md:text-sm text-muted-foreground">{t("coupons.code")}: {c.code}</span>
                   <div className="flex items-center gap-2">
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => {
-                        navigator.clipboard.writeText(c.code);
-                        toast({ title: t("coupons.copiedTitle", { defaultValue: "Código copiado" }), description: t("coupons.copiedDesc", { defaultValue: c.code }) });
-                      }}
-                    >
-                      <Copy className="w-3 h-3 mr-1" />{t("coupons.copy")}
-                    </Button>
-                    <Button size="sm" variant="default">{t("coupons.redeem")}</Button>
+                    <Button size="sm" variant="default" className="h-9 px-3 text-xs md:h-11 md:px-8 md:text-sm">{t("coupons.viewDetails", { defaultValue: "Ver Detalhes" })}</Button>
                   </div>
                 </div>
                 <p className="text-xs text-muted-foreground mt-2">

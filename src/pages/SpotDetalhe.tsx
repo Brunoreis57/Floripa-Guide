@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { MapPin, Star, Navigation, Utensils, Calendar } from "lucide-react";
 import { spotsData } from "./PontosTuristicos";
 import { restaurantsData } from "./Restaurantes";
@@ -16,6 +17,7 @@ const SpotDetalhe = () => {
   const id = Number(params.id);
   const spot = spotsData.find((s) => s.id === id);
   const [showMore, setShowMore] = useState(false);
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
 
   const areaKeywords: Record<string, string[]> = {
     joaquina: [
@@ -73,46 +75,57 @@ const SpotDetalhe = () => {
           </div>
         </div>
 
-        <Card className="overflow-hidden">
-          <div className="relative h-64 md:h-96">
-            <img src={spot.image} alt={t(`spots.items.${spot.nameKey}`)} className="w-full h-full object-cover" />
-            <div className="absolute top-4 left-4 flex gap-2">
-              <Badge>{spot.category}</Badge>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+              <div className="relative col-span-2 h-40 md:h-64 rounded shadow-md overflow-hidden cursor-zoom-in" onClick={() => setLightboxSrc(spot.image)}>
+                <img src={spot.image} alt={t(`spots.items.${spot.nameKey}`)} className="w-full h-full object-cover" />
+                <div className="absolute top-2 left-2 flex gap-2">
+                  <Badge>{spot.category}</Badge>
+                </div>
+              </div>
+              <div className="grid gap-2 col-span-2 md:col-span-1 grid-cols-2 md:grid-rows-2">
+                {gallery.slice(1, 3).map((src, i) => (
+                  <button key={i} className="h-20 md:h-32 rounded shadow overflow-hidden cursor-zoom-in" onClick={() => setLightboxSrc(src)}>
+                    <img src={src} alt={`foto ${i + 1}`} className="w-full h-full object-cover" />
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
-          <div className="p-6">
-            <p className="text-muted-foreground mb-4">
-              {spot.nameKey === "joaquina"
-                ? (
-                  showMore
-                    ? "A Praia da Joaquina é um dos ícones de Florianópolis, famosa pelas dunas, campeonatos de surf e estrutura para visitantes. Com ondas fortes e areia clara, é ideal para quem busca esportes, contemplação e fotos incríveis. Próxima à Lagoa da Conceição, oferece fácil acesso a restaurantes e vida noturna. Há estacionamentos e áreas de apoio; durante o verão, o movimento é intenso e recomenda-se chegar cedo."
-                    : "A Praia da Joaquina é um dos ícones de Florianópolis, famosa pelas dunas e campeonatos de surf. Próxima à Lagoa da Conceição, oferece fácil acesso a restaurantes e vida noturna..."
-                )
-                : spot.description}
-            </p>
-            <Button variant="outline" size="sm" onClick={() => setShowMore((v) => !v)}>
-              {showMore ? t("common.showLess", { defaultValue: "Mostrar menos" }) : t("common.showMore", { defaultValue: "Mostrar mais" })}
-            </Button>
+            <div className="p-0 md:p-2">
+              <p className="text-muted-foreground mb-3">
+                {spot.nameKey === "joaquina"
+                  ? (
+                    showMore
+                      ? "A Praia da Joaquina é um dos ícones de Florianópolis, famosa pelas dunas, campeonatos de surf e estrutura para visitantes. Com ondas fortes e areia clara, é ideal para quem busca esportes, contemplação e fotos incríveis. Próxima à Lagoa da Conceição, oferece fácil acesso a restaurantes e vida noturna. Há estacionamentos e áreas de apoio; durante o verão, o movimento é intenso e recomenda-se chegar cedo."
+                      : "A Praia da Joaquina é um dos ícones de Florianópolis, famosa pelas dunas e campeonatos de surf. Próxima à Lagoa da Conceição, oferece fácil acesso a restaurantes e vida noturna..."
+                  )
+                  : spot.description}
+              </p>
+              <Button variant="outline" size="sm" className="h-9 px-3 text-xs md:h-11 md:px-8 md:text-sm" onClick={() => setShowMore((v) => !v)}>
+                {showMore ? t("common.showLess", { defaultValue: "Mostrar menos" }) : t("common.showMore", { defaultValue: "Mostrar mais" })}
+              </Button>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground my-3">
+                <MapPin className="w-4 h-4" />
+                <span>{spot.bestTime}</span>
+              </div>
+              <div className="flex gap-2">
+                <Button variant="default" size="sm" className="h-9 px-3 text-xs md:h-11 md:px-8 md:text-sm">
+                  <MapPin className="w-3 h-3 md:w-4 md:h-4 mr-2" />{t("spots.viewOnMap")}
+                </Button>
+                <Button variant="outline" size="sm" className="h-9 px-3 text-xs md:h-11 md:px-8 md:text-sm">
+                  <Navigation className="w-3 h-3 md:w-4 md:h-4" />
+                </Button>
+              </div>
+            </div>
+        </div>
 
-            <div className="mt-6 grid grid-cols-3 gap-2 md:gap-3">
-              {gallery.map((src, i) => (
-                <img key={i} src={src} alt={`foto ${i + 1}`} className="w-full h-24 md:h-32 object-cover rounded" />
-              ))}
-            </div>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-              <MapPin className="w-4 h-4" />
-              <span>{spot.bestTime}</span>
-            </div>
-            <div className="flex gap-2">
-              <Button variant="default">
-                <MapPin className="w-4 h-4 mr-2" />{t("spots.viewOnMap")}
-              </Button>
-              <Button variant="outline">
-                <Navigation className="w-4 h-4" />
-              </Button>
-            </div>
-          </div>
-        </Card>
+        <Dialog open={!!lightboxSrc} onOpenChange={(o) => { if (!o) setLightboxSrc(null); }}>
+          <DialogContent className="max-w-3xl p-0 bg-transparent border-none shadow-none">
+            {lightboxSrc && (
+              <img src={lightboxSrc} alt="imagem" className="max-h-[80vh] w-full object-contain rounded" />
+            )}
+          </DialogContent>
+        </Dialog>
 
         <div className="mt-10">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
@@ -121,10 +134,10 @@ const SpotDetalhe = () => {
           {relatedRestaurants.length === 0 ? (
             <p className="text-muted-foreground">{t("common.noResults", { defaultValue: "Nenhum restaurante próximo" })}</p>
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-fr">
               {relatedRestaurants.slice(0, 6).map((r) => (
                 <Link key={r.id} to={`/restaurantes/${r.id}`} className="group">
-                  <Card className="overflow-hidden">
+                  <Card className="h-full overflow-hidden">
                     <div className="h-24 md:h-32 overflow-hidden">
                       <img src={r.image} alt={r.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
                     </div>
@@ -146,10 +159,10 @@ const SpotDetalhe = () => {
           {relatedEvents.length === 0 ? (
             <p className="text-muted-foreground">{t("common.noResults", { defaultValue: "Nenhum evento próximo" })}</p>
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-fr">
               {relatedEvents.slice(0, 6).map((e) => (
                 <Link key={e.id} to={`/eventos/${e.id}`} className="group">
-                  <Card className="overflow-hidden">
+                  <Card className="h-full overflow-hidden">
                     <div className="h-24 md:h-32 overflow-hidden">
                       <img src={e.image} alt={t(`events.items.${e.nameKey}`)} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
                     </div>

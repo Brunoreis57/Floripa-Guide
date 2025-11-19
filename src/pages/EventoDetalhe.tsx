@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, MapPin, Ticket, TrendingUp } from "lucide-react";
@@ -34,14 +33,23 @@ const EventoDetalhe = () => {
           )}
         </div>
 
-        <Card className="overflow-hidden">
-          <div className="relative h-64 md:h-96">
-            <img src={evt.image} alt={t(`events.items.${evt.nameKey}`)} className="w-full h-full object-cover" />
-            <div className="absolute top-4 left-4">
-              <Badge>{evt.category}</Badge>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+            <div className="relative col-span-2 h-40 md:h-64 rounded shadow-md overflow-hidden">
+              <img src={evt.image} alt={t(`events.items.${evt.nameKey}`)} className="w-full h-full object-cover" />
+              <div className="absolute top-2 left-2">
+                <Badge>{evt.category}</Badge>
+              </div>
+            </div>
+            <div className="grid gap-2 col-span-2 md:col-span-1 grid-cols-2 md:grid-rows-2">
+              {[evt.image, evt.image].map((src, i) => (
+                <button key={i} className="h-20 md:h-32 rounded shadow overflow-hidden">
+                  <img src={src} alt={`foto ${i + 1}`} className="w-full h-full object-cover" />
+                </button>
+              ))}
             </div>
           </div>
-          <div className="p-6">
+          <div className="p-0 md:p-2">
             <p className="text-muted-foreground mb-4">{evt.description}</p>
             <div className="space-y-2 mb-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
@@ -61,7 +69,7 @@ const EventoDetalhe = () => {
               {t("events.viewDetails")}
             </Button>
           </div>
-        </Card>
+        </div>
       </div>
     </div>
   );

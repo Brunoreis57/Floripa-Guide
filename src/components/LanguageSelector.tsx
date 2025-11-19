@@ -27,7 +27,7 @@ const LanguageSelector = () => {
 
   return (
     <Select value={i18n.language} onValueChange={(value) => i18n.changeLanguage(value)}>
-      <SelectTrigger className="w-[140px] h-9 gap-2">
+      <SelectTrigger className="w-[110px] h-8 gap-1 text-xs">
         <Globe className="w-4 h-4" />
         <SelectValue>
           <span className="flex items-center gap-2">

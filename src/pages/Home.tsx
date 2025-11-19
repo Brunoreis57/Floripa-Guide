@@ -185,7 +185,7 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
             {topSpots.map((spot, index) => (
               <a key={index} href={index === 0 ? "/pontos-turisticos/1" : index === 1 ? "/restaurantes/1" : "/eventos/1"}>
               <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group cursor-pointer">

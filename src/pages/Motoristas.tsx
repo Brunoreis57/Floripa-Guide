@@ -70,10 +70,10 @@ const Motoristas = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 auto-rows-fr">
           {filtered.map((d) => (
             <a key={d.id} href={`/motoristas/${d.id}`}>
-            <Card className="overflow-hidden hover:shadow-lg transition-all">
+            <Card className="h-full overflow-hidden hover:shadow-lg transition-all">
               <div className="relative h-32 md:h-40 overflow-hidden">
                 <img
                   src={d.photoUrl || eventsImage}
@@ -100,9 +100,9 @@ const Motoristas = () => {
                 {t("drivers.areas", { defaultValue: "Lugares atendidos" })}: {d.areas.join(", ")}
               </div>
               <div className="p-4 md:p-6 pt-4">
-                <Button onClick={() => contact(d)}>
-                  <Phone className="w-4 h-4 mr-2" />
-                  {t("drivers.contact", { defaultValue: "Fale com o motorista" })}
+                <Button size="sm" className="w-full" onClick={() => (window.location.href = `/motoristas/${d.id}`)}>
+                  <Car className="w-4 h-4 mr-2" />
+                  {t("drivers.viewDetails", { defaultValue: "Ver Detalhes" })}
                 </Button>
               </div>
             </Card>

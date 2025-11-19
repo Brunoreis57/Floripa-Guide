@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Phone, Star, Car, MapPin } from "lucide-react";
@@ -55,21 +54,30 @@ const MotoristaDetalhe = () => {
           </div>
         </div>
 
-        <Card className="overflow-hidden">
-          <div className="relative h-64 md:h-96">
-            <img src={drv.photoUrl || eventsImage} alt={drv.name} className="w-full h-full object-cover" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+            <div className="relative col-span-2 h-40 md:h-64 rounded shadow-md overflow-hidden">
+              <img src={drv.photoUrl || eventsImage} alt={drv.name} className="w-full h-full object-cover" />
+            </div>
+            <div className="grid gap-2 col-span-2 md:col-span-1 grid-cols-2 md:grid-rows-2">
+              {[drv.photoUrl || eventsImage, drv.photoUrl || eventsImage].map((src, i) => (
+                <button key={i} className="h-20 md:h-32 rounded shadow overflow-hidden">
+                  <img src={src} alt={`foto ${i + 1}`} className="w-full h-full object-cover" />
+                </button>
+              ))}
+            </div>
           </div>
-          <div className="p-6">
+          <div className="p-0 md:p-2">
             <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
               <MapPin className="w-4 h-4" />
               <span>{t("drivers.areas", { defaultValue: "Lugares atendidos" })}: {drv.areas.join(", ")}</span>
             </div>
-            <Button onClick={contact}>
-              <Phone className="w-4 h-4 mr-2" />
+            <Button size="sm" className="h-9 px-3 text-xs md:h-11 md:px-8 md:text-sm" onClick={contact}>
+              <Phone className="w-3 h-3 md:w-4 md:h-4 mr-2" />
               {t("drivers.contact", { defaultValue: "Fale com o motorista" })}
             </Button>
           </div>
-        </Card>
+        </div>
       </div>
     </div>
   );

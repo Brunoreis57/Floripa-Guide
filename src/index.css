@@ -9,22 +9,22 @@ All colors MUST be HSL.
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 210 20% 15%;
+    --foreground: 0 0% 10%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 210 20% 15%;
+    --card: 0 0% 96%;
+    --card-foreground: 0 0% 10%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 210 20% 15%;
 
-    --primary: 190 85% 45%;
+    --primary: 190 86% 48%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 25 35% 90%;
-    --secondary-foreground: 210 20% 15%;
+    --secondary: 190 100% 24%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 15% 96%;
-    --muted-foreground: 210 10% 50%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
 
     --accent: 15 85% 60%;
     --accent-foreground: 0 0% 100%;
@@ -32,9 +32,9 @@ All colors MUST be HSL.
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 20% 90%;
-    --input: 210 20% 90%;
-    --ring: 190 85% 45%;
+    --border: 0 0% 89%;
+    --input: 0 0% 89%;
+    --ring: 190 86% 48%;
 
     --radius: 0.75rem;
 
@@ -51,42 +51,43 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 210 25% 8%;
-    --foreground: 210 15% 95%;
+    --background: 0 0% 5%;
+    --foreground: 0 0% 95%;
 
-    --card: 210 25% 10%;
-    --card-foreground: 210 15% 95%;
+    --card: 0 0% 9%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 210 25% 10%;
-    --popover-foreground: 210 15% 95%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 190 85% 55%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 190 86% 48%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 210 20% 15%;
-    --secondary-foreground: 210 15% 95%;
+    --secondary: 190 89% 72%;
+    --secondary-foreground: 0 0% 0%;
 
-    --muted: 210 20% 15%;
-    --muted-foreground: 210 15% 65%;
+    --muted: 0 0% 9%;
+    --muted-foreground: 0 0% 70%;
 
     --accent: 15 85% 65%;
-    --accent-foreground: 0 0% 100%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 20% 20%;
-    --input: 210 20% 20%;
-    --ring: 190 85% 55%;
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 190 86% 48%;
   }
 }
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));
   }
 
   body {
-    @apply bg-background text-foreground;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
   }
 }

@@ -110,11 +110,11 @@ const PontosTuristicos = () => {
         </div>
 
         {/* Spots Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 auto-rows-fr">
           {filteredSpots.map((spot) => (
             <a key={spot.id} href={`/pontos-turisticos/${spot.id}`}>
             <Card
-              className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer group"
+              className="h-full overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer group"
             >
               {/* Image */}
               <div className="relative h-36 md:h-48 overflow-hidden">
@@ -168,14 +168,11 @@ const PontosTuristicos = () => {
                   </div>
                 </div>
 
-                {/* Actions */}
-                <div className="flex gap-2">
-                  <Button variant="default" size="sm" className="flex-1">
+                {/* Action */}
+                <div className="mt-2">
+                  <Button variant="default" size="sm" className="w-full">
                     <MapPin className="w-4 h-4 mr-1" />
-                    {t('spots.viewOnMap')}
-                  </Button>
-                  <Button variant="outline" size="sm">
-                    <Navigation className="w-4 h-4" />
+                    {t('spots.viewDetails', { defaultValue: 'Ver Detalhes' })}
                   </Button>
                 </div>
               </div>

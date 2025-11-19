@@ -81,7 +81,10 @@ const RoteiroIA = () => {
 
   const buildItinerary = (prefs: ItineraryPreferences): AIItinerary => {
     const pickSpots = (cat: "praia" | "trilha") => spotsData.filter((s) => s.category === cat);
-    const pickRests = () => restaurantsData;
+    const pickRests = () => {
+      const planOrder: Record<string, number> = { premium: 0, destaque: 1, free: 2 };
+      return restaurantsData.slice().sort((a, b) => planOrder[a.plan] - planOrder[b.plan]);
+    };
     const pickEvents = () => eventsData.filter((e) => e.category.toLowerCase().includes("bal"));
 
     const transportSummary = prefs.budget === "baixo" ? "Ônibus e caminhadas" : prefs.budget === "medio" ? "Uber e ônibus" : "Aluguel de carro";

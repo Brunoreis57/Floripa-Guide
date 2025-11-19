@@ -7,7 +7,6 @@ import {
   Utensils,
   Star,
   DollarSign,
-  Phone,
   MapPin,
   Tag,
   Filter,
@@ -274,10 +273,12 @@ const Restaurantes = () => {
     },
   ];
 
-  const filteredRestaurants =
+  const planOrder: Record<string, number> = { premium: 0, destaque: 1, free: 2 };
+  const filteredRestaurants = (
     selectedCategory === "todos"
       ? restaurants
-      : restaurants.filter((rest) => rest.category === selectedCategory);
+      : restaurants.filter((rest) => rest.category === selectedCategory)
+  ).slice().sort((a, b) => planOrder[a.plan] - planOrder[b.plan]);
 
   const getPriceColor = (price: string) => {
     return "text-muted-foreground";
@@ -333,11 +334,11 @@ const Restaurantes = () => {
         </div>
 
         {/* Restaurants Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 auto-rows-fr">
           {filteredRestaurants.map((restaurant) => (
             <a key={restaurant.id} href={`/restaurantes/${restaurant.id}`}>
             <Card
-              className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer group"
+              className="h-full overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer group"
             >
               {/* Image */}
               <div className="relative h-36 md:h-48 overflow-hidden">
@@ -397,14 +398,9 @@ const Restaurantes = () => {
 
                 {/* Actions */}
                 <div className="flex gap-2">
-                  <Button variant="default" size="sm" className="flex-1">
+                  <Button variant="default" size="sm" className="w-full">
                     <Utensils className="w-4 h-4 mr-1" />
-                    {t('restaurants.viewDetails')}
-                  </Button>
-                  <Button variant="outline" size="sm" asChild>
-                    <a href={`tel:${restaurant.phone}`}>
-                      <Phone className="w-4 h-4" />
-                    </a>
+                    {t('restaurants.viewDetails', { defaultValue: 'Ver Detalhes' })}
                   </Button>
                 </div>
               </div>

@@ -57,13 +57,13 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/planos" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  {t('footer.plans')}
+                <Link to="/parceiros" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Ser um parceiro
                 </Link>
               </li>
               <li>
-                <Link to="/anunciar" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  {t('footer.advertise')}
+                <Link to="/parceiros" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  {t('footer.plans')}
                 </Link>
               </li>
             </ul>
